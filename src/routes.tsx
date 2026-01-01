@@ -4,6 +4,7 @@ import DashboardPage from "./pages/DashboardPage";
 import AuthLayout from "./layouts/AuthLayout";
 import LoginPage from "./pages/LoginPage";
 import ProductsPage from "./pages/ProductsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <ProtectedLayout />,
-    // errorElement: <NotFoundPage />, // Xử lý lỗi cục bộ
+    errorElement: <NotFoundPage />,
     children: [
       {
         index: true, // Đường dẫn /dashboard
@@ -31,8 +32,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "*",
-  //   element: <NotFoundPage />,
-  // },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
 ]);
