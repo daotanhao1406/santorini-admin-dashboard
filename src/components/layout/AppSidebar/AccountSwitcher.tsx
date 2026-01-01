@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useAuth } from "@/providers/AuthProvider";
+import { getFirstLetterOfName } from "@/lib/utils";
 
 export function AccountSwitcher({
   user,
@@ -22,12 +24,14 @@ export function AccountSwitcher({
   };
 }) {
   const isMobile = useIsMobile();
+  const { signOut } = useAuth();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
           <AvatarImage src={user.avatar} alt={user.name} />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>{getFirstLetterOfName(user.name)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -40,7 +44,7 @@ export function AccountSwitcher({
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="h-8 w-8 rounded-lg">
               <AvatarImage src={user.avatar} alt={user.name} />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>{getFirstLetterOfName(user.name)}</AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-medium">{user.name}</span>
@@ -71,7 +75,7 @@ export function AccountSwitcher({
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="destructive">
+        <DropdownMenuItem variant="destructive" onSelect={() => signOut()}>
           <LogOut />
           Log out
         </DropdownMenuItem>

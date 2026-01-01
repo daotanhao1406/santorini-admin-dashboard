@@ -1,3 +1,4 @@
+import { AuthProvider } from "./AuthProvider";
 import { ThemeProvider } from "./ThemeProvider";
 
 export default function AppProvider({
@@ -5,5 +6,9 @@ export default function AppProvider({
 }: {
   children: React.ReactNode;
 }) {
-  return <ThemeProvider storageKey="santorini-theme">{children}</ThemeProvider>;
+  return (
+    <ThemeProvider storageKey="santorini-theme">
+      <AuthProvider>{children}</AuthProvider>
+    </ThemeProvider>
+  );
 }

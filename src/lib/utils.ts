@@ -5,6 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const getFirstLetterOfName = (name: string): string => {
+  if (typeof name !== "string" || !name.trim()) return "?";
+
+  return name[0].toUpperCase();
+};
+
 export const getInitials = (str: string): string => {
   if (typeof str !== "string" || !str.trim()) return "?";
 

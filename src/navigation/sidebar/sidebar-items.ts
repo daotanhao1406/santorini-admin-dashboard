@@ -1,6 +1,6 @@
 import {
   Box,
-  ChartBar,
+  LayoutDashboard,
   type LucideIcon,
   ReceiptText,
   Users,
@@ -39,12 +39,12 @@ export const sidebarItems: NavGroup[] = [
       {
         title: "Dashboard",
         url: "/",
-        icon: Box,
+        icon: LayoutDashboard,
       },
       {
         title: "Products",
         url: "/products",
-        icon: ChartBar,
+        icon: Box,
       },
       {
         title: "Invoice",
