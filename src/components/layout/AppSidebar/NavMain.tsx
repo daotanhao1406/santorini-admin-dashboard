@@ -180,7 +180,8 @@ export function NavMain({ items }: NavMainProps) {
     if (subItems?.length) {
       return subItems.some((sub) => path.startsWith(sub.url));
     }
-    return path === url;
+
+    return url === "/" ? path === url : path.startsWith(url);
   };
 
   const isSubmenuOpen = (subItems?: NavMainItem["subItems"]) => {
@@ -206,7 +207,6 @@ export function NavMain({ items }: NavMainProps) {
                           tooltip={item.title}
                           isActive={isItemActive(item.url)}
                         >
-                          {/* Đổi href thành to */}
                           <Link
                             to={item.url}
                             target={item.newTab ? "_blank" : undefined}

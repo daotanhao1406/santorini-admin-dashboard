@@ -5,6 +5,8 @@ import AuthLayout from "./layouts/AuthLayout";
 import LoginPage from "./pages/LoginPage";
 import ProductsPage from "./pages/ProductsPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import CreateProductPage from "./pages/ProductsPage/CreateProductPage";
+import UpdateProductPage from "./pages/ProductsPage/UpdateProductPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +30,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <ProductsPage />,
+        children: [
+          {
+            index: true,
+            element: <ProductsPage />,
+          },
+          {
+            path: "create",
+            element: <CreateProductPage />,
+          },
+          {
+            path: ":id",
+            element: <UpdateProductPage />,
+          },
+        ],
       },
     ],
   },

@@ -11,11 +11,10 @@ import { cn } from "@/lib/utils";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { ThemeToggle } from "@/components/layout/AppSidebar/ThemeToggle";
 import { useAuth } from "@/providers/AuthProvider";
+import { PageTitle } from "@/components/layout/PageTitle";
 
 export default function ProtectedLayout() {
-  console.log("procted");
   const { session, profile, loading, signOut } = useAuth();
-  console.log("🚀 ~ ProtectedLayout ~ loading:", loading, profile);
 
   // 1. Loading State
   if (loading) {
@@ -64,6 +63,7 @@ export default function ProtectedLayout() {
                 orientation="vertical"
                 className="mx-2 my-auto data-[orientation=vertical]:h-4"
               />
+              <PageTitle />
             </div>
             <div className="flex items-center gap-2">
               <ThemeToggle />

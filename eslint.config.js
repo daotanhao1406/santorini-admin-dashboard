@@ -24,6 +24,7 @@ export default defineConfig([
         'off',
         { allowConstantExport: true },
       ],
+      'react-hooks/incompatible-library': 'off'
     },
   },
 ])

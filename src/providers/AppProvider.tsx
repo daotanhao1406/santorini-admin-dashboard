@@ -1,4 +1,6 @@
+import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "./AuthProvider";
+import QueryProdiver from "./QueryProvider";
 import { ThemeProvider } from "./ThemeProvider";
 
 export default function AppProvider({
@@ -8,7 +10,10 @@ export default function AppProvider({
 }) {
   return (
     <ThemeProvider storageKey="santorini-theme">
-      <AuthProvider>{children}</AuthProvider>
+      <QueryProdiver>
+        <AuthProvider>{children}</AuthProvider>
+      </QueryProdiver>
+      <Toaster />
     </ThemeProvider>
   );
 }
