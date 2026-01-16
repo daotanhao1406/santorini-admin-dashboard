@@ -22,7 +22,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton asChild>
               <div className="text-xl font-bold">
                 <Command />
-                Santorini
+                Santorini Admin
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
