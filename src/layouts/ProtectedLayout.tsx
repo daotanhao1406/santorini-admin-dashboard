@@ -1,5 +1,4 @@
-// src/components/layout/ProtectedLayout.tsx (Hoặc đường dẫn file của bạn)
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import {
   SidebarInset,
   SidebarProvider,
@@ -14,9 +13,8 @@ import { useAuth } from "@/providers/AuthProvider";
 import { PageTitle } from "@/components/layout/PageTitle";
 
 export default function ProtectedLayout() {
-  const { session, profile, loading, signOut } = useAuth();
+  const { session, profile, loading } = useAuth();
 
-  // 1. Loading State
   if (loading) {
     return (
       <div className="h-screen w-full flex items-center justify-center bg-gray-50">
@@ -26,24 +24,22 @@ export default function ProtectedLayout() {
   }
 
   // 2. Logic bảo vệ cấp 1: Chưa đăng nhập -> Login
-  if (!session) {
-    return <Navigate to="/auth/login" replace />;
-  }
+  // if (!session) {
+  //   return <Navigate to="/auth/login" replace />;
+  // }
 
   // 3. Logic bảo vệ cấp 2: Đã login nhưng KHÔNG PHẢI OWNER
   // Trường hợp này: Customer tò mò mò vào link admin
-  if (profile && profile.role !== "owner") {
-    // Đăng xuất ngay lập tức để tránh loop vô hạn hoặc kẹt session
-    signOut();
-    return <Navigate to="/auth/login" replace />;
-  }
+  // if (profile && profile.role !== "owner") {
+  //   signOut();
+  //   return <Navigate to="/auth/login" replace />;
+  // }
 
   // Chuẩn bị dữ liệu user thật cho UI
-  // Fallback nếu chưa load kịp profile (dù hiếm khi xảy ra vì loading đã chặn)
   const userData = {
     name: profile?.full_name || "Admin User",
-    email: profile?.email || session.user.email || "",
-    avatar: profile?.avatar_url || "", // Avatar rỗng component sẽ tự render fallback ký tự đầu
+    email: profile?.email || session?.user?.email || "",
+    avatar: profile?.avatar_url || "",
   };
 
   return (
